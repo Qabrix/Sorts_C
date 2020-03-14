@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int comp = 0;
 int trans = 0;
@@ -29,7 +30,11 @@ int main() {
         scanf("%d", elements+i);
     }
 
+    clock_t t1;
+    t1 = clock();
     InsertionSort(lenght, elements);
+    t1 = clock() - t1;
+    fprintf(stderr, "Time clicks: %ld\nTime sec: %f\n", t1, ((double)t1/CLOCKS_PER_SEC));
 
     for (int i=1; i<lenght; i++) {
         if (*(elements+i) < *(elements+i-1)) {
