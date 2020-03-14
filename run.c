@@ -9,6 +9,8 @@ void run(char* file) {
     "-Wall",
     "-pedantic",
     file,
+    "-o",
+    "sort",
     NULL};
 
     if (fork() == 0) {
@@ -16,13 +18,18 @@ void run(char* file) {
     } else {
         wait(NULL);
     }
-    char *args2[] = {"./a.out",
+    char *args2[] = {"./sort",
     NULL};
 
     execvp(args2[0], args2);
 }
 
 int main(int argc, char *argv[]) {
+    if (argc != 5) {
+        fprintf(stderr, "4 arguments needed. Have %d\n", argc-1);
+        exit(1);
+    }
+
     char *type = NULL;
     char *comp = NULL;
     for (int i=1; i<=4; i++) {
@@ -48,6 +55,12 @@ int main(int argc, char *argv[]) {
             run("MergeSortle.c");
         } else if (strcmp(comp, ">=") == 0) {
             run("MergeSortge.c");
+        }
+    } else if (strcmp(type, "quick") == 0) {
+        if (strcmp(comp, "<=") == 0) {
+            run("QuickSortle.c");
+        } else if (strcmp(comp, ">=") == 0) {
+            run("QuickSortge.c");
         }
     }
 
