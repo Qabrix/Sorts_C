@@ -3,7 +3,7 @@
 * **Insertion Sort** + _stats_
 * **Merge Sort** + _stats_
 * **Quick Sort** + _stats_
-* **DataAnalyzer** - program for drawing charts of statistics, can draw up to 3 charts of statistics done with --stat option. Matplotlib and python needed (done on 3.6.9). After run program reads amount and path of files.
+* **DataAnalyzer.py** - program for drawing charts of statistics, can draw up to 3 charts of statistics done with --stat option. Matplotlib and python needed (done on 3.6.9). After run program reads amount and path of files.
 
 Automated compilation with run.c. After compilation we can choose algorithm run options.<br>
 **Options:**
