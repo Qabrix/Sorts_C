@@ -11,4 +11,5 @@ Automated compilation with run.c. After compilation we can choose algorithm run 
 * **--comp** - _"<="_, _">="_ (sort order, needed to compile)
 * **--stat** - _filename_, _k_ (sort statistics in k tests with n*100 sized array 1<=n<=100 saved to filename, optional)
 
-**Example:** _./run --type merge --comp "<=" --stat ./statistics/data.txt 10_
+**Example:** _./run --type merge --comp "<=" --stat ./statistics/data.txt 10_<br><br>
+I used permuted congruential generator here for --stat option to randomly generate arrays to avoid cycles of random numbers. Files: pcg_basic.c and pcg_basic.h were downloaded from site: https://www.pcg-random.org/ and are not mine.
