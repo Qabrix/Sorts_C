@@ -4,13 +4,13 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 
-void run(char *file) {
-    char *args[] = {"gcc",
-    "-Wall",
-    "-pedantic",
+static char *sort_location = "AllSorts";
+
+void run(char *file, char *run, char *stat, char *k) {
+    chdir(sort_location);
+
+    char *args[] = {"make",
     file,
-    "-o",
-    "sort",
     NULL};
 
     if (fork() == 0) {
@@ -18,27 +18,16 @@ void run(char *file) {
     } else {
         wait(NULL);
     }
-    char *args2[] = {"./sort",
-    NULL};
-
-    execvp(args2[0], args2);
-}
-
-void run_stat(char *file, char *stat, char *k) {
-    char *args[] = {"gcc",
-    "-Wall",
-    "-pedantic",
-    file,
-    "-o",
-    "sort",
-    NULL};
+    char *clean = "clean";
+    args[1] = clean;
 
     if (fork() == 0) {
         execvp(args[0], args);
     } else {
         wait(NULL);
     }
-    char *args2[] = {"./sort",
+
+    char *args2[] = {run,
     stat,
     k,
     NULL};
@@ -64,21 +53,21 @@ int main(int argc, char *argv[]) {
         }
         if (strcmp(type, "insert") == 0) {
             if (strcmp(comp, "<=") == 0) {
-                run("InsertionSortle.c");
+                run("InsertionSortle", "./InsertionSortle", NULL, NULL);
             } else if (strcmp(comp, ">=") == 0) {
-                run("InsertionSortge.c");
+                run("InsertionSortge", "./InsertionSortge", NULL, NULL);
             }
         } else if (strcmp(type, "merge") == 0) {
             if (strcmp(comp, "<=") == 0) {
-                run("MergeSortle.c");
+                run("MergeSortle", "./MergeSortle", NULL, NULL);
             } else if (strcmp(comp, ">=") == 0) {
-                run("MergeSortge.c");
+                run("MergeSortge", "./MergeSortge", NULL, NULL);
             }
         } else if (strcmp(type, "quick") == 0) {
             if (strcmp(comp, "<=") == 0) {
-                run("QuickSortle.c");
+                run("QuickSortle", "./QuickSortle", NULL, NULL);
             } else if (strcmp(comp, ">=") == 0) {
-                run("QuickSortge.c");
+                run("QuickSortge", "./QuickSortge", NULL, NULL);
             }
         }
     } else if (argc == 8) {
@@ -103,21 +92,21 @@ int main(int argc, char *argv[]) {
         }
         if (strcmp(type, "insert") == 0) {
             if (strcmp(comp, "<=") == 0) {
-                run_stat("InsertionSortle.c", stat, k);
+                run("InsertionSortle", "./InsertionSortle", stat, k);
             } else if (strcmp(comp, ">=") == 0) {
-                run_stat("InsertionSortge.c", stat, k);
+                run("InsertionSortge", "./InsertionSortge", stat, k);
             }
         } else if (strcmp(type, "merge") == 0) {
             if (strcmp(comp, "<=") == 0) {
-                run_stat("MergeSortle.c", stat, k);
+                run("MergeSortle", "./MergeSortle", stat, k);
             } else if (strcmp(comp, ">=") == 0) {
-                run_stat("MergeSortge.c", stat, k);
+                run("MergeSortge", "./MergeSortge", stat, k);
             }
         } else if (strcmp(type, "quick") == 0) {
             if (strcmp(comp, "<=") == 0) {
-                run_stat("QuickSortle.c", stat, k);
+                run("QuickSortle", "./QuickSortle", stat, k);
             } else if (strcmp(comp, ">=") == 0) {
-                run_stat("QuickSortge.c", stat, k);
+                run("QuickSortge", "./QuickSortge", stat, k);
             }
         }
     } else {
