@@ -1,4 +1,4 @@
-TARGETS = InsertionSortle, InsertionSortge, MergeSortle, MergeSortge, QuickSortle, QuickSortge
+TARGETS = InsertionSortle, InsertionSortge, MergeSortle, MergeSortge, QuickSortle, QuickSortge,
 
 all: $(TARGETS)
 
