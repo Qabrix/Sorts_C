@@ -69,6 +69,12 @@ int main(int argc, char *argv[]) {
             } else if (strcmp(comp, ">=") == 0) {
                 run("QuickSortge", "./QuickSortge", NULL, NULL);
             }
+        } else if (strcmp(type, "dpquick") == 0) {
+            if (strcmp(comp, "<=") == 0) {
+                run("DPQuickle", "./DPQuickle", NULL, NULL);
+            } else if (strcmp(comp, ">=") == 0) {
+                run("DPQuickge", "./DPQuickge", NULL, NULL);
+            }
         }
     } else if (argc == 8) {
         char *type = NULL;
@@ -107,6 +113,12 @@ int main(int argc, char *argv[]) {
                 run("QuickSortle", "./QuickSortle", stat, k);
             } else if (strcmp(comp, ">=") == 0) {
                 run("QuickSortge", "./QuickSortge", stat, k);
+            }
+        } else if (strcmp(type, "dpquick") == 0) {
+            if (strcmp(comp, "<=") == 0) {
+                run("DPQuickle", "./DPQuickle", stat, k);
+            } else if (strcmp(comp, ">=") == 0) {
+                run("DPQuickge", "./DPQuickge", stat, k);
             }
         }
     } else {

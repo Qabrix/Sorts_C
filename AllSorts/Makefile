@@ -1,4 +1,4 @@
-TARGETS = InsertionSortle, InsertionSortge, MergeSortle, MergeSortge, QuickSortle, QuickSortge,
+TARGETS = InsertionSortle, InsertionSortge, MergeSortle, MergeSortge, QuickSortle, QuickSortge, DPQuickle, DPQuickge,
 
 all: $(TARGETS)
 
@@ -11,6 +11,8 @@ MergeSortle: MergeSortle.o pcg_basic.o
 MergeSortge: MergeSortge.o pcg_basic.o
 QuickSortle: QuickSortle.o pcg_basic.o
 QuickSortge: QuickSortge.o pcg_basic.o
+DPQuickle: DPQuickle.o pcg_basic.o
+DPQuickge: DPQuickge.o pcg_basic.o
 
 pcg_basic.o: pcg_basic.c pcg_basic.h
 InsertionSortle.o: InsertionSortle.c pcg_basic.h
@@ -19,3 +21,5 @@ MergeSortle.o: MergeSortle.c pcg_basic.h
 MergeSortge.o: MergeSortge.c pcg_basic.h
 QuickSortle.o: QuickSortle.c pcg_basic.h
 QuickSortge.o: QuickSortge.c pcg_basic.h
+DPQuickle.o: DPQuickle.c pcg_basic.h
+DPQuickge.o: DPQuickge.c pcg_basic.h
