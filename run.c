@@ -75,6 +75,18 @@ int main(int argc, char *argv[]) {
             } else if (strcmp(comp, ">=") == 0) {
                 run("DPQuickge", "./DPQuickge", NULL, NULL);
             }
+        } else if (strcmp(type, "hybridmi") == 0) {
+            if (strcmp(comp, "defined") == 0) {
+                run("HybridSortMI", "./HybridSortMI", NULL, NULL);
+            }
+        } else if (strcmp(type, "hybridqi") == 0) {
+            if (strcmp(comp, "defined") == 0) {
+                run("HybridSortQI", "./HybridSortQI", NULL, NULL);
+            }
+        } else if (strcmp(type, "hybridmq") == 0) {
+            if (strcmp(comp, "defined") == 0) {
+                run("HybridSortMQ", "./HybridSortMQ", NULL, NULL);
+            }
         }
     } else if (argc == 8) {
         char *type = NULL;
@@ -119,6 +131,18 @@ int main(int argc, char *argv[]) {
                 run("DPQuickle", "./DPQuickle", stat, k);
             } else if (strcmp(comp, ">=") == 0) {
                 run("DPQuickge", "./DPQuickge", stat, k);
+            }
+        } else if (strcmp(type, "hybridmi") == 0) {
+            if (strcmp(comp, "defined") == 0) {
+                run("HybridSortMI", "./HybridSortMI", stat, k);
+            }
+        } else if (strcmp(type, "hybridqi") == 0) {
+            if (strcmp(comp, "defined") == 0) {
+                run("HybridSortQI", "./HybridSortQI", stat, k);
+            }
+        } else if (strcmp(type, "hybridmq") == 0) {
+            if (strcmp(comp, "defined") == 0) {
+                run("HybridSortMQ", "./HybridSortMQ", stat, k);
             }
         }
     } else {

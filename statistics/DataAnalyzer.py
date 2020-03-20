@@ -1,4 +1,5 @@
 from matplotlib import pyplot as plt
+from math import log
 
 
 def analyze_data():
@@ -49,6 +50,17 @@ def analyze_data():
         color1 = ["r", "b", "g"]
         for i in range(amount):
             plt.plot(x_axis, y_axis[i], color1[i], label=files_lst[i])
+
+        if option == 3:
+            log_axis_x = [i for i in range(1, 10001)]
+            log_axis_y = [x*log(x) for x in log_axis_x]
+            plt.plot(log_axis_x, log_axis_y, "k", label="nlog(n)")
+            k = 1.8
+            # dla quick sort k ~ 1.69, k ~ 1.695, k ~ 1.7
+            # dla dual pivot quick sort k ~ 1.55, k ~ 1.6
+            # 1.8 nlog(n) + O(n)
+            klog_axis_y = [k*x*log(x) for x in log_axis_x]
+            plt.plot(log_axis_x, klog_axis_y, "m", label=str(k) + "nlog(n)")
         plt.legend(loc='upper left')
         plt.xlabel("Array Size")
         plt.ylabel(str_options[option-1])
