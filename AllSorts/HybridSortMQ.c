@@ -6,7 +6,6 @@
 
 #include "pcg_basic.h"
 
-
 int comp = 0;
 int trans = 0;
 
