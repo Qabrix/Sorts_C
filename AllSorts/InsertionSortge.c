@@ -10,17 +10,21 @@ int comp = 0;
 int trans = 0;
 
 void InsertionSort(int lenght, int *elements) {
-    int temp;
-    for (int i=lenght-1; i>0; i--) {
-        for (int k=0; k<i; k++) {
+    int key, j;
+    for (int i = 1; i < lenght; i++) {
+        key = *(elements + i);
+        j = i - 1;
+        while (j >= 0 && *(elements + j) < key) {
+            *(elements + j + 1) = *(elements + j);
+            j = j - 1;
+            trans++;
             comp++;
-            if (*(elements+k) < *(elements+k+1)) {
-                temp = *(elements+k+1);
-                *(elements+k+1) = *(elements+k);
-                *(elements+k) = temp;
-                trans++;
-            }
         }
+        if (j >= 0) { // jak petla nie weszla a spelnilismy warunek 1 to bylo porownanie
+            comp++;
+        }
+        *(elements + j + 1) = key;
+        trans++;
     }
 }
 
