@@ -10,7 +10,7 @@ int comp = 0;
 int trans = 0;
 
 int * MergeSort(int lenght, int *elements, int start_lenght) { // Uwaga! Tutaj zakladam ze transpozycja to ogolne przestawienia w pamieci kluczy, nie tylko przestawienia kolejnosci
-    if (lenght != 1) {
+    if (lenght > 1) {
         int l = lenght/2;
         if (lenght%2 == 0) {
             int *a = MergeSort(l, elements, start_lenght);
