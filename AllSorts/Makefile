@@ -1,4 +1,4 @@
-TARGETS = InsertionSortle, InsertionSortge, MergeSortle, MergeSortge, QuickSortle, QuickSortge, DPQuickle, DPQuickge, HybridSortMI, HybridSortQI, HybridSortMQ,
+TARGETS = InsertionSortle, InsertionSortge, MergeSortle, MergeSortge, QuickSortle, QuickSortge, DPQuickle, DPQuickge, HybridSortMI, HybridSortQI, HybridSortMQ, HybridSortQM,
 
 all: $(TARGETS)
 
@@ -16,6 +16,7 @@ DPQuickge: DPQuickge.o pcg_basic.o
 HybridSortMI: HybridSortMI.o pcg_basic.o
 HybridSortQI: HybridSortQI.o pcg_basic.o
 HybridSortMQ: HybridSortMQ.o pcg_basic.o
+HybridSortQM: HybridSortQM.o pcg_basic.o
 
 pcg_basic.o: pcg_basic.c pcg_basic.h
 InsertionSortle.o: InsertionSortle.c pcg_basic.h
@@ -29,3 +30,4 @@ DPQuickge.o: DPQuickge.c pcg_basic.h
 HybridSortMI.o: HybridSortMI.c pcg_basic.h
 HybridSortQI.o: HybridSortQI.c pcg_basic.h
 HybridSortMQ.o: HybridSortMQ.c pcg_basic.h
+HybridSortQM.o: HybridSortQM.c pcg_basic.h

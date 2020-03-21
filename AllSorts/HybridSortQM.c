@@ -9,9 +9,108 @@
 int comp = 0;
 int trans = 0;
 
+int * MergeSort(int lenght, int *elements, int start_lenght) { // Uwaga! Tutaj zakladam ze transpozycja to ogolne przestawienia w pamieci kluczy, nie tylko przestawienia kolejnosci
+    if (lenght != 1) {
+        int l = lenght/2;
+        if (lenght%2 == 0) {
+            int *a = MergeSort(l, elements, start_lenght);
+            int *b = MergeSort(l, elements + l, start_lenght);
+
+            int *temp;
+            if (lenght < start_lenght) {
+                temp = malloc(sizeof(int)*lenght);
+            } else {
+                temp = elements;
+            }
+            int t_ptr = 0;
+            int b_indeks = 0;
+
+            for (int i = 0; i<l; i++) {
+                while (b_indeks < l && *(a+i) > *(b+b_indeks)) {
+                    *(temp+t_ptr) = *(b+b_indeks);
+                    t_ptr++;
+                    b_indeks++;
+                    comp++;
+                    trans++;
+                }
+
+                if (b_indeks < l) { // to tylko na potrzeby danych, jesli while sie skonczyl przy b_indeks<l to znaczy ze porownalismy *(a+i) > *(b+b_indeks)
+                    comp++;
+                }
+
+                *(temp+t_ptr) = *(a+i);
+                t_ptr++;
+                trans++;
+            }
+
+            while (b_indeks < l) {
+                *(temp+t_ptr) = *(b+b_indeks);
+                t_ptr++;
+                b_indeks++;
+                trans++;
+            }
+
+            if (l >= 2) {
+                free(a);
+                free(b);
+            }
+
+            return temp;
+        } else {
+            int *a = MergeSort(l, elements, start_lenght);
+            int *b = MergeSort(l+1, elements + l, start_lenght);
+
+            int *temp;
+            if (lenght < start_lenght) {
+                temp = malloc(sizeof(int)*lenght);
+            } else {
+                temp = elements;
+            }
+            int t_ptr = 0;
+            int b_indeks = 0;
+
+            for (int i = 0; i<l; i++) {
+                while (b_indeks < l+1 && *(a+i) > *(b+b_indeks)) {
+                    *(temp+t_ptr) = *(b+b_indeks);
+                    t_ptr++;
+                    b_indeks++;
+                    comp++;
+                    trans++;
+                }
+
+                if (b_indeks < l+1) { // to tylko na potrzeby danych, jesli while sie skonczyl przy b_indeks<l+1 to znaczy ze porownalismy *(a+i) > *(b+b_indeks)
+                    comp++;
+                }
+
+                *(temp+t_ptr) = *(a+i);
+                t_ptr++;
+                trans++;
+            }
+
+            while (b_indeks < l+1) {
+                *(temp+t_ptr) = *(b+b_indeks);
+                t_ptr++;
+                b_indeks++;
+                trans++;
+            }
+
+            if (l == 1) {
+                free(b);
+            } else {
+                free(a);
+                free(b);
+            }
+
+            return temp;
+        }
+    } else {
+        return elements;
+    }
+}
+
 void QuickSort(int lenght, int *elements) {
-    if (lenght <= 1) {
-        return;
+    if (lenght <= 10) {
+        return (void)MergeSort(lenght, elements, lenght);
     }
 
     int div_p = *(elements+lenght-1); // biore div_p jako ostatni element tablicy, zawsze
@@ -57,123 +156,31 @@ SWAP:   *(elements+lenght-1) = *(elements+index_left);
     QuickSort(lenght-index_left-2, elements+index_left+2);
 }
 
-int * MergeSort(int lenght, int *elements) { // Uwaga! Tutaj zakladam ze transpozycja to ogolne przestawienia w pamieci kluczy, nie tylko przestawienia kolejnosci
-    if (lenght > 10) {
-        int l = lenght/2;
-        if (lenght%2 == 0) {
-            int *a = MergeSort(l, elements);
-            int *b = MergeSort(l, elements + l);
-
-            int *temp = malloc(sizeof(int)*lenght);
-            int t_ptr = 0;
-            int b_indeks = 0;
-
-            for (int i = 0; i<l; i++) {
-                while (b_indeks < l && *(a+i) > *(b+b_indeks)) {
-                    *(temp+t_ptr) = *(b+b_indeks);
-                    t_ptr++;
-                    b_indeks++;
-                    comp++;
-                    trans++;
-                }
-
-                if (b_indeks < l) { // to tylko na potrzeby danych, jesli while sie skonczyl przy b_indeks<l to znaczy ze porownalismy *(a+i) > *(b+b_indeks)
-                    comp++;
-                }
-
-                *(temp+t_ptr) = *(a+i);
-                t_ptr++;
-                trans++;
-            }
-
-            while (b_indeks < l) {
-                *(temp+t_ptr) = *(b+b_indeks);
-                t_ptr++;
-                b_indeks++;
-                trans++;
-            }
-
-            if (l > 10) {
-                free(a);
-                free(b);
-            }
-
-            return temp;
-        } else {
-            int *a = MergeSort(l, elements);
-            int *b = MergeSort(l+1, elements + l);
-
-            int *temp = malloc(sizeof(int)*lenght);
-            int t_ptr = 0;
-            int b_indeks = 0;
-
-            for (int i = 0; i<l; i++) {
-                while (b_indeks < l+1 && *(a+i) > *(b+b_indeks)) {
-                    *(temp+t_ptr) = *(b+b_indeks);
-                    t_ptr++;
-                    b_indeks++;
-                    comp++;
-                    trans++;
-                }
-
-                if (b_indeks < l+1) { // to tylko na potrzeby danych, jesli while sie skonczyl przy b_indeks<l+1 to znaczy ze porownalismy *(a+i) > *(b+b_indeks)
-                    comp++;
-                }
-
-                *(temp+t_ptr) = *(a+i);
-                t_ptr++;
-                trans++;
-            }
-
-            while (b_indeks < l+1) {
-                *(temp+t_ptr) = *(b+b_indeks);
-                t_ptr++;
-                b_indeks++;
-                trans++;
-            }
-
-            if (l == 10) {
-                free(b);
-            } else if (l > 10) {
-                free(a);
-                free(b);
-            }
-
-            return temp;
-        }
-    } else {
-        QuickSort(lenght, elements);
-        return elements;
-    }
-}
-
 void run_normal() {
-    int lenght;
-    printf("Welcome to Hybrid Merge Quick Sort, enter lenght: ");
+    int lenght = 0;
+    printf("Welcome to Hybrid Quick Merge Sort, enter lenght: ");
     scanf("%d", &lenght);
     int *elements = malloc(sizeof(int)*lenght);
     printf("Insert %d elements: ", lenght);
-
     for (int i=0; i<lenght; i++) {
         scanf("%d", elements+i);
     }
 
     clock_t t1;
     t1 = clock();
-    int *sorted = MergeSort(lenght, elements);
+    QuickSort(lenght, elements);
     t1 = clock() - t1;
     fprintf(stderr, "Time clicks: %ld\nTime sec: %f\n", t1, ((double)t1/CLOCKS_PER_SEC));
-    free(elements);
 
     for (int i=1; i<lenght; i++) {
-        if (*(sorted+i) < *(sorted+i-1)) {
+        if (*(elements+i) < *(elements+i-1)) {
             fprintf(stderr, "Array not sorted.\n");
             exit(1);
         }
     }
 
     for (int i=0; i<lenght; i++) {
-        printf("%d, ", *(sorted+i));
+        printf("%d, ", *(elements+i));
     }
     printf("\n");
 
@@ -202,13 +209,12 @@ void run_stats(FILE *file, pcg32_random_t *rng) {
 
         clock_t t1;
         t1 = clock();
-        int *sorted = MergeSort(i*100, elements);
+        QuickSort(i*100, elements);
         t1 = clock() - t1;
         fprintf(stderr, "Time clicks: %ld\nTime sec: %f\n", t1, ((double)t1/CLOCKS_PER_SEC));
-        free(elements);
 
         for (int k=1; k<i*100; k++) {
-            if (*(sorted+k) < *(sorted+k-1)) {
+            if (*(elements+k) < *(elements+k-1)) {
                 fprintf(stderr, "Array not sorted.\n");
                 exit(1);
             }
@@ -239,7 +245,7 @@ void run_stats(FILE *file, pcg32_random_t *rng) {
         fprintf(file, "%d", trans);
         fprintf(file, "%s", "\n"); // new line
 
-        free(sorted);
+        free(elements);
     }
 
     dup2(saved_stdin, 0);

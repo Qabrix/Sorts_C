@@ -87,6 +87,10 @@ int main(int argc, char *argv[]) {
             if (strcmp(comp, "defined") == 0) {
                 run("HybridSortMQ", "./HybridSortMQ", NULL, NULL);
             }
+        } else if (strcmp(type, "hybridqm") == 0) {
+            if (strcmp(comp, "defined") == 0) {
+                run("HybridSortQM", "./HybridSortQM", NULL, NULL);
+            }
         }
     } else if (argc == 8) {
         char *type = NULL;
@@ -143,6 +147,10 @@ int main(int argc, char *argv[]) {
         } else if (strcmp(type, "hybridmq") == 0) {
             if (strcmp(comp, "defined") == 0) {
                 run("HybridSortMQ", "./HybridSortMQ", stat, k);
+            }
+        } else if (strcmp(type, "hybridqm") == 0) {
+            if (strcmp(comp, "defined") == 0) {
+                run("HybridSortQM", "./HybridSortQM", stat, k);
             }
         }
     } else {
