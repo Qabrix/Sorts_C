@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <sys/wait.h>
 #include <time.h>
 
 #include "pcg_basic.h"
@@ -109,13 +107,6 @@ void run_normal() {
 }
 
 void run_stats(FILE *file, pcg32_random_t *rng) {
-    int saved_stdin = dup(0); // potrzebne do restore stdin
-    int fd[2]; // file descriptors
-
-    pipe(fd); // laczymy je
-    dup2(fd[0], 0); // duplikujemy fd[0] na stdin
-    close(fd[0]);
-
     int *elements;
     
     for (int i=1; i<=100; i++) { // nasze wszystkie proby ze 100
@@ -167,9 +158,6 @@ void run_stats(FILE *file, pcg32_random_t *rng) {
 
         free(elements);
     }
-
-    dup2(saved_stdin, 0);
-    close(saved_stdin);
 }
 
 int main(int argc, char *argv[]) {
