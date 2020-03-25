@@ -132,7 +132,11 @@ void run_normal() {
     int *sorted = MergeSort(lenght, elements);
     t1 = clock() - t1;
     fprintf(stderr, "Time clicks: %ld\nTime sec: %f\n", t1, ((double)t1/CLOCKS_PER_SEC));
-    free(elements);
+    if (elements == sorted) {
+        elements = NULL;
+    } else {
+        free(elements);
+    }
 
     for (int i=1; i<lenght; i++) {
         if (*(sorted+i) < *(sorted+i-1)) {
@@ -167,7 +171,11 @@ void run_stats(FILE *file, pcg32_random_t *rng) {
         int *sorted = MergeSort(i*100, elements);
         t1 = clock() - t1;
         fprintf(stderr, "Time clicks: %ld\nTime sec: %f\n", t1, ((double)t1/CLOCKS_PER_SEC));
-        free(elements);
+        if (elements == sorted) {
+            elements = NULL;
+        } else {
+            free(elements);
+        }
 
         for (int k=1; k<i*100; k++) {
             if (*(sorted+k) < *(sorted+k-1)) {
